@@ -1,0 +1,131 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+        body {
+            background-color: rgb(247, 216, 186);
+            text-align: center;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgb(254, 248, 221);
+        }
+        
+        header .home-button {
+            margin: 0;
+            padding: 10px 20px;
+            background-color: rgb(247, 216, 186);
+            border-radius: 20px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        header .home-button:hover {
+            background-color: rgb(254, 248, 221);
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li {
+            margin-right: 10px;
+        }
+        
+        .centered-text {
+            font-size: 32px;
+            margin-top: 100px;
+        }
+
+        /* Modified link styles */
+        a.custom-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(247, 216, 186);
+            border-radius: 20px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        a.custom-link:hover {
+            background-color: rgb(254, 248, 221);
+        }
+
+        .social-icon {
+            height: 30px;
+        }
+
+        /* Added styles for social icon buttons */
+        .social-icon-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        /* Added style for the header image */
+        .header-image {
+            max-width: 7%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Added styles for the content */
+        .content {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
+        <img src="{% static 'Psy.png' %}" alt="Psy" class="header-image">
+        <nav>
+            <ul>
+                <!-- Left buttons -->
+                <li><a href="{% url 'blog' %}" class="custom-link">Blog</a></li>
+                <li><a href="{% url 'resources' %}" class="custom-link">Resources</a></li>
+                <li><a href="{% url 'contacts' %}" class="custom-link">Contacts</a></li>
+                
+                <!-- Right buttons -->
+                <li>
+                    <ul>
+                        <li><button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin.png' %}" class="social-icon"></button></li>
+                        <li><button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram.png' %}" class="social-icon"></button></li>
+                        <li><button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook.png' %}" class="social-icon"></button></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h2>About Me</h2>
+        <p>Hello! I'm Dr. Ana Carvalho, a licensed psychologist specializing in cognitive-behavioral therapy. With over 10 years of experience, I am dedicated to helping individuals overcome challenges and improve their mental well-being.</p>
+        <p>I believe in creating a safe and supportive environment for my clients, where they can openly discuss their concerns. My approach is collaborative, focusing on understanding each person's unique needs and tailoring treatment accordingly.</p>
+        <p>Through evidence-based techniques, I work with clients to develop coping strategies, address negative thought patterns, and promote positive behavior change. My goal is to empower individuals to lead fulfilling lives and achieve their personal growth objectives.</p>
+        <p>If you are seeking support for anxiety, depression, relationship issues, or any other psychological concerns, I am here to help. Together, we can embark on a journey of self-discovery and resilience.</p>
+        <p>Feel free to explore my website for more information about my services and resources. Don't hesitate to reach out and schedule an appointment. I look forward to working with you.</p>
+    </div>
+</body>
+</html>
+

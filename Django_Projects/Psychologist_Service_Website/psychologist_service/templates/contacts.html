@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Page</title>
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .background-image {
+            background-image: url("{% static 'Gabinete_2.jpg' %}");
+            height: 100vh;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgb(254, 248, 221);
+        }
+        
+        header .home-button {
+            margin: 0;
+            padding: 10px 20px;
+            background-color: rgb(247, 216, 186);
+            border-radius: 20px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        header .home-button:hover {
+            background-color: rgb(254, 248, 221);
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li {
+            margin-right: 10px;
+        }
+        
+        .centered-text {
+            font-size: 32px;
+            margin-top: 100px;
+        }
+
+        /* Modified link styles */
+        a.custom-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(247, 216, 186);
+            border-radius: 20px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        a.custom-link:hover {
+            background-color: rgb(254, 248, 221);
+        }
+
+        .social-icon {
+            height: 30px;
+        }
+
+        /* Added styles for social icon buttons */
+        .social-icon-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        /* Added style for the header image */
+        .header-image {
+            max-width: 7%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Added style for the Google Maps iframe container */
+        .google-maps-container {
+            display: flex;
+            align-items: flex-start; /* Align items at the top */
+            justify-content: space-between; /* Add spacing between columns */
+            margin-top: 20px;
+        }
+        
+        .map-column {
+            flex: 1;
+            max-width: 45%; /* Decreased map frame width */
+        }
+        
+        .text-box-column {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        
+        .text-box {
+            padding: 20px;
+            background-color: rgba(247, 216, 186, 0.75);
+            color: rgba(0, 0, 0);
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px; /* Adjust the max-width value as needed */
+            text-align: left; /* Add text-align property to align text to the left */
+        }
+    
+        .text-box h2 {
+            text-align: left; /* Align the title to the left */
+        }
+    
+        .text-box ul {
+            padding-left: 20px; /* Add indentation for the list items */
+        }
+    
+        .text-box ul li {
+            list-style-type: disc; /* Use disc bullets for the list items */
+        }
+        
+        /* Adjust the size of the map as needed */
+        .google-maps-iframe {
+            width: 95%;
+            height: 350px;
+            border: 0;
+        }
+    </style>
+</head>
+<body class="background-image">
+    <header>
+        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
+        <img src="{% static 'Psy.png' %}" alt="Psy" class="header-image">
+        <nav>
+            <ul>
+                <!-- Left buttons -->
+                <li><a href="{% url 'blog' %}" class="custom-link">Blog</a></li>
+                <li><a href="{% url 'resources' %}" class="custom-link">Resources</a></li>
+                <li><a href="{% url 'contacts' %}" class="custom-link">Contacts</a></li>
+            <!-- Right buttons -->
+            <li>
+                <ul>
+                    <li><button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin.png' %}" class="social-icon"></button></li>
+                    <li><button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram.png' %}" class="social-icon"></button></li>
+                    <li><button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook.png' %}" class="social-icon"></button></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="google-maps-container">
+    <div class="map-column">
+        <iframe class="google-maps-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9387.43789438463!2d-8.622062499999999!3d40.8593791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2385c992aef9e3%3A0x5b0ebb36c66a8b72!2sCAO%20-%20Ovar%20Art%20Center!5e0!3m2!1sen!2s!4v1626396482927!5m2!1sen!2s" allowfullscreen></iframe>
+    </div>
+    <div class="text-box-column">
+        <div class="text-box">
+            <h2>Info:</h2>
+            <ul>
+                <li><strong>Address:</strong></li>
+                <ul style="list-style-type: none;">
+                    <li>CAO - Ovar Art Center (CAO - Centro de Arte de Ovar):</li>
+                    <li>R. Arquitecto Januário Godinho, 3880-213 Ovar</li>
+                </ul>
+                <li><strong>E-mail:</strong></li>
+                <ul style="list-style-type: none;">
+                    <li>psicologo@gmail.com</li>
+                </ul>
+                <li><strong>Phone:</strong></li>
+                <ul style="list-style-type: none;">
+                    <li>+351 9** *** ***</li>
+                </ul>
+            </ul>
+        </div>
+              
+    </div>
+</div>
+
