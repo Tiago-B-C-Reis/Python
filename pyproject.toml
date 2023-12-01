@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "Python"
+name = "requests"
 version = "0.1.0"
 description = ""
 authors = ["Tiago Reis <Tiago.B.C.Reis@hotmail.com>"]

@@ -22,3 +22,7 @@ def resources(request):
     return render(request, 'resources.html')
 
 # Add more view functions for additional pages as needed
+
+
+# Run this in the terminal to launch the website:
+# python manage.py runserver

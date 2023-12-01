@@ -6,23 +6,24 @@
     <title>Contact Page</title>
     <style>
         body {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            background-color: rgb(247, 216, 186);
             text-align: center;
         }
 
-        .background-image {
-            background-image: url("{% static 'Gabinete_2.jpg' %}");
-            height: 100vh;
+        body, html {
+            margin: 0;
+            padding: 0;
         }
         
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
             background-color: rgb(254, 248, 221);
+            width: 100%; /* Make sure the header takes up the full width of the page */
+            box-sizing: border-box; /* This ensures the width includes any padding or borders */
+            height: 100px; /* For example, this sets the height of the header to 80 pixels. Adjust as desired. */
+            padding: 10px 0; /* Vertical padding can give space above and below your header content. */
         }
         
         header .home-button {
@@ -36,25 +37,55 @@
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
-        
-        header .home-button:hover {
+
+        .button-appointment {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(211, 211, 211);
+            border-radius: 20px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        a.button-appointment:hover {
             background-color: rgb(254, 248, 221);
         }
-        
+
+        nav {
+            flex: 1; /* This ensures that the space is divided evenly between the two nav elements */
+        }
+    
         nav ul {
             list-style-type: none;
             padding: 0;
             display: flex;
             align-items: center;
+            margin: 0;
         }
         
-        nav ul li {
-            margin-right: 10px;
+        .left-nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start; /* Align to the most left */
         }
         
-        .centered-text {
-            font-size: 32px;
-            margin-top: 100px;
+        .right-nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end; /* Align to the most right */
+        }
+        
+        .home-button {
+            flex: 1;
+            text-align: center; /* Ensure the home button is centered */
+        }
+        
+        nav.left-nav ul li,
+        nav.right-nav ul li {
+            margin: 0 10px;
         }
 
         /* Modified link styles */
@@ -84,26 +115,24 @@
             padding: 0;
             cursor: pointer;
         }
-
-        /* Added style for the header image */
-        .header-image {
-            max-width: 7%;
-            height: auto;
-            margin-left: auto;
-            margin-right: auto;
-        }
         
         /* Added style for the Google Maps iframe container */
         .google-maps-container {
+            background-image: url("{% static 'Gabinete_2.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
             display: flex;
+            height: 800px;  /* Set fixed height here */
             align-items: flex-start; /* Align items at the top */
             justify-content: space-between; /* Add spacing between columns */
-            margin-top: 20px;
         }
+        
         
         .map-column {
             flex: 1;
-            max-width: 45%; /* Decreased map frame width */
+            max-width: 50%; /* Decreased map frame width */
+            margin-top: 50px;  /* adjust this value as needed */
         }
         
         .text-box-column {
@@ -111,6 +140,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
+            margin-top: 50px;  /* adjust this value as needed */
         }
         
         .text-box {
@@ -138,32 +168,35 @@
         /* Adjust the size of the map as needed */
         .google-maps-iframe {
             width: 95%;
-            height: 350px;
+            height: 400px;
             border: 0;
         }
+        
+        .baseboard {
+            background-color: rgb(254, 248, 221);
+            padding: 15px;
+            font-size: 14px;
+        }
+
+
     </style>
 </head>
-<body class="background-image">
+<body>
     <header>
-        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
-        <img src="{% static 'Psy.png' %}" alt="Psy" class="header-image">
-        <nav>
+        <nav class="left-nav">
             <ul>
-                <!-- Left buttons -->
-                <li><a href="{% url 'blog' %}" class="custom-link">Blog</a></li>
-                <li><a href="{% url 'resources' %}" class="custom-link">Resources</a></li>
+                <li><a href="http://127.0.0.1:8000#about" class="custom-link">About me</a></li>
+                <li><a href="http://127.0.0.1:8000#services" class="custom-link">Services</a></li>   
+            </ul>
+        </nav>
+        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
+        <nav class="right-nav">
+            <ul>
                 <li><a href="{% url 'contacts' %}" class="custom-link">Contacts</a></li>
-            <!-- Right buttons -->
-            <li>
-                <ul>
-                    <li><button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin.png' %}" class="social-icon"></button></li>
-                    <li><button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram.png' %}" class="social-icon"></button></li>
-                    <li><button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook.png' %}" class="social-icon"></button></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</header>
+                <li><a href="/appointment" class="button-appointment">Make an appointment</a></li>
+            </ul>
+        </nav>
+    </header>
 
 <div class="google-maps-container">
     <div class="map-column">
@@ -186,9 +219,28 @@
                 <ul style="list-style-type: none;">
                     <li>+351 9** *** ***</li>
                 </ul>
+                <div>
+                    <p> <p>
+                    <button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin_1.png' %}" class="social-icon"></button>
+                    <button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram_1.png' %}" class="social-icon"></button>
+                    <button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook_1.png' %}" class="social-icon"></button>
+                </div>
+
             </ul>
         </div>
               
     </div>
 </div>
 
+<div class="baseboard">
+    &copy; {% now "Y" %} Ana Carvalho. All rights reserved.
+    <div>
+        <p> <p>
+        <button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin_1.png' %}" class="social-icon"></button>
+        <button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram_1.png' %}" class="social-icon"></button>
+        <button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook_1.png' %}" class="social-icon"></button>
+    </div>
+</div>
+
+</body>
+</html>

@@ -3,19 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Appointment page</title>
     <style>
         body {
             background-color: rgb(247, 216, 186);
             text-align: center;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
         }
         
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
             background-color: rgb(254, 248, 221);
+            width: 100%; /* Make sure the header takes up the full width of the page */
+            box-sizing: border-box; /* This ensures the width includes any padding or borders */
+            height: 100px; /* For example, this sets the height of the header to 80 pixels. Adjust as desired. */
+            padding: 10px 0; /* Vertical padding can give space above and below your header content. */
         }
         
         header .home-button {
@@ -29,28 +37,62 @@
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
-        
-        header .home-button:hover {
+
+        .button-appointment {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(211, 211, 211);
+            border-radius: 20px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        a.button-appointment:hover {
             background-color: rgb(254, 248, 221);
         }
-        
+
+        nav {
+            flex: 1; /* This ensures that the space is divided evenly between the two nav elements */
+        }
+    
         nav ul {
             list-style-type: none;
             padding: 0;
             display: flex;
             align-items: center;
+            margin: 0;
         }
         
-        nav ul li {
-            margin-right: 10px;
+        .left-nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start; /* Align to the most left */
         }
         
+        .right-nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end; /* Align to the most right */
+        }
+        
+        .home-button {
+            flex: 1;
+            text-align: center; /* Ensure the home button is centered */
+        }
+        
+        nav.left-nav ul li,
+        nav.right-nav ul li {
+            margin: 0 10px;
+        }
+
         .centered-text {
             font-size: 32px;
             margin-top: 100px;
         }
 
-        /* Modified link styles */
         a.custom-link {
             display: inline-block;
             padding: 10px 20px;
@@ -61,16 +103,11 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
-        
+
         a.custom-link:hover {
             background-color: rgb(254, 248, 221);
         }
 
-        .social-icon {
-            height: 30px;
-        }
-
-        /* Added styles for social icon buttons */
         .social-icon-button {
             background: none;
             border: none;
@@ -78,37 +115,162 @@
             cursor: pointer;
         }
 
-        /* Added style for the header image */
-        .header-image {
-            max-width: 7%;
-            height: auto;
-            margin-left: auto;
-            margin-right: auto;
+        .social-icon {
+            height: 30px;
         }
+
+
+        .baseboard {
+            background-color: rgb(254, 248, 221);
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #263238;
+            color: #ECEFF1;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #37474F;
+        }
+
+        .appointment-text {
+            flex: 1;
+            background-color: rgb(254, 248, 221, 0.6);  /* Background color with 60% transparency */
+            border-radius: 30px;
+            padding: 20px;
+            text-align: left;
+            margin-top: 50px;
+            margin-button: 50px;
+            height: auto;
+            max-width: 400px;
+        }
+
+        .appointment-container {
+            flex-basis: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            padding: 50px;
+            height: 500px;
+            background-image: url('{% static "appointment_image_1.png" %}');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .appointment_contact-text {
+            flex: 1;
+            background-color: rgb(254, 248, 221, 0.6);  /* Background color with 60% transparency */
+            border-radius: 30px;
+            padding: 20px;
+            text-align: left;
+            margin-top: 50px;
+            margin-button: 50px;
+            height: auto;
+            max-width: 400px;
+        }
+
+        .appointment_contact-container {
+            flex-basis: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding: 50px;
+            height: 250px;
+            background-image: url('{% static "appointment_contact.png" %}');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+        }
+
     </style>
+
 </head>
 <body>
     <header>
-        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
-        <img src="{% static 'Psy.png' %}" alt="Psy" class="header-image">
-        <nav>
+        <nav class="left-nav">
             <ul>
-                <!-- Left buttons -->
-                <li><a href="{% url 'blog' %}" class="custom-link">Blog</a></li>
-                <li><a href="{% url 'resources' %}" class="custom-link">Resources</a></li>
+                <li><a href="http://127.0.0.1:8000#about" class="custom-link">About me</a></li>
+                <li><a href="http://127.0.0.1:8000#services" class="custom-link">Services</a></li>           
+            </ul>
+        </nav>
+        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
+        <nav class="right-nav">
+            <ul>
                 <li><a href="{% url 'contacts' %}" class="custom-link">Contacts</a></li>
-                
-                <!-- Right buttons -->
-                <li>
-                    <ul>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin.png' %}" class="social-icon"></button></li>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram.png' %}" class="social-icon"></button></li>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook.png' %}" class="social-icon"></button></li>
-                    </ul>
-                </li>
+                <li><a href="/appointment" class="button-appointment">Make an appointment</a></li>
             </ul>
         </nav>
     </header>
 
+<div class="content"> 
+    <div class="appointment-container">
+        <div class="appointment-text">
+            <h2>LET’S CONNECT</h2>
+            <p>I’d love to chat with you. Contact me via the form below and I’ll be in touch within 48 hours.</p>
+        </div>
+</div>
+
+
+<div class="content"> 
+    <div class="appointment_contact-container">
+        <div class="appointment_contact-text">
+            <h2>PLEASE NOTE</h2>
+            <p>I’d love to chat with you. Contact me via the form below and I’ll be in touch within 48 hours.</p>
+            <p>I am not able to provide crisis or emergency support. If you require urgent care please contact your local emergency service or crisis line. For support and information, please see my Resources page.</p>
+        </div>
+        <div class="appointment_contact-text">
+            <a href="mailto:example@example.com?subject=Hello&body=I%20have%20a%20question.">Email Us with a Subject and Body</a>
+        </div>
+</div>
+
+
+<div class="baseboard">
+    &copy; {% now "Y" %} Ana Carvalho. All rights reserved.
+    <div>
+        <p> <p>
+        <button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin_1.png' %}" class="social-icon"></button>
+        <button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram_1.png' %}" class="social-icon"></button>
+        <button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook_1.png' %}" class="social-icon"></button>
+    </div>
+</div>
+
 </body>
+
 </html>
+

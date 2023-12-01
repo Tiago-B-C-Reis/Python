@@ -1,4 +1,4 @@
-#!/home/tiagor/PycharmProjects/Python/Django_Projects/Psychologist_Service_Website/.venv/bin/python
+#!/Users/tiagoreis/PycharmProjects/Python/Django_Projects/Psychologist_Service_Website/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

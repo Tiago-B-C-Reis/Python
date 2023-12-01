@@ -1,127 +1,109 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    
 <head>
-    <title>Home Page</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ana Carvalho's Psychology Practice</title>
     <style>
-        body {
-            background-color: rgb(247, 216, 186);
-            text-align: center;
+        body, html {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #F8F5ED;
+            color: #6C6C6C;
         }
-        
+
         header {
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: rgb(254, 248, 221);
+            background-color: #FFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
-        header .home-button {
-            margin: 0;
-            padding: 10px 20px;
-            background-color: rgb(247, 216, 186);
-            border-radius: 20px;
-            text-decoration: none;
-            color: rgb(0, 0, 0);
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        
-        header .home-button:hover {
-            background-color: rgb(254, 248, 221);
-        }
-        
-        nav ul {
-            list-style-type: none;
-            padding: 0;
+
+        .nav-links {
             display: flex;
-            align-items: center;
-        }
-        
-        nav ul li {
-            margin-right: 10px;
-        }
-        
-        .centered-text {
-            font-size: 32px;
-            margin-top: 100px;
+            gap: 20px;
         }
 
-        /* Modified link styles */
-        a.custom-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: rgb(247, 216, 186);
-            border-radius: 20px;
+        .nav-links a {
             text-decoration: none;
-            color: rgb(0, 0, 0);
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        
-        a.custom-link:hover {
-            background-color: rgb(254, 248, 221);
+            color: #6C6C6C;
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
         }
 
-        .social-icon {
-            height: 30px;
+        .nav-links a:hover {
+            border: 1px solid #6C6C6C;
         }
 
-        /* Added styles for social icon buttons */
-        .social-icon-button {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
+        .hero {
+            background-color: #E8DED2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
         }
 
-        /* Added style for the header image */
-        .header-image {
-            max-width: 7%;
-            height: auto;
-            margin-left: auto;
-            margin-right: auto;
+        .hero-content {
+            text-align: center;
+            width: 70%;
         }
 
-        /* Added styles for the content */
-        .content {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 18px;
-            color: rgb(0, 0, 0);
+        .hero-content h1 {
+            font-size: 48px;
+        }
+
+        .hero-content p {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .section {
+            padding: 60px 100px;
+            text-align: center;
+        }
+
+        footer {
+            padding: 20px 50px;
+            text-align: center;
+            background-color: #FFF;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
-        <img src="{% static 'Psy.png' %}" alt="Psy" class="header-image">
-        <nav>
-            <ul>
-                <!-- Left buttons -->
-                <li><a href="{% url 'blog' %}" class="custom-link">Blog</a></li>
-                <li><a href="{% url 'resources' %}" class="custom-link">Resources</a></li>
-                <li><a href="{% url 'contacts' %}" class="custom-link">Contacts</a></li>
-                
-                <!-- Right buttons -->
-                <li>
-                    <ul>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin.png' %}" class="social-icon"></button></li>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram.png' %}" class="social-icon"></button></li>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook.png' %}" class="social-icon"></button></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+        <h1>Dr. Ana Carvalho</h1>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+        </div>
     </header>
 
-    <div class="content">
-        <h2>Welcome to My Website!</h2>
-        <p>This is a sample text. You can replace it with your own content.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et rhoncus augue. Nullam tincidunt lobortis felis, at interdum arcu aliquet vel. Sed vel sapien sit amet eros efficitur finibus. Proin finibus bibendum enim. Vestibulum in est nec velit pharetra fermentum. Nunc suscipit magna nec orci rutrum, ut dignissim nisi accumsan. Ut maximus, ipsum at tempus faucibus, enim sem efficitur erat, eget dapibus ex mauris non est.</p>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to My Practice</h1>
+            <p>Your journey to mental well-being starts here. Learn more about my services, read my blog, or get in touch for an appointment.</p>
+        </div>
     </div>
+
+    <div class="section">
+        <!-- Add your content here. For instance, the About section -->
+    </div>
+
+    <div class="section">
+        <!-- Another section, maybe for testimonials or services -->
+    </div>
+
+    <footer>
+        &copy; {% now "Y" %} Dr. Ana Carvalho. All rights reserved.
+    </footer>
 </body>
 </html>

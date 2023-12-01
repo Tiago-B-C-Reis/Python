@@ -9,14 +9,29 @@
             background-color: rgb(247, 216, 186);
             text-align: center;
         }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
         
         header {
+            position: fixed;
+            top: 0;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
             background-color: rgb(254, 248, 221);
+            width: 100%;
+            box-sizing: border-box;
+            height: 100px;
+            padding: 10px 0;
         }
+
+        .content {
+            padding-top: 100px; /* This assumes your header is 100px tall. Adjust this value as needed. */
+        }        
         
         header .home-button {
             margin: 0;
@@ -29,28 +44,62 @@
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
-        
-        header .home-button:hover {
+
+        .button-appointment {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(211, 211, 211);
+            border-radius: 20px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        a.button-appointment:hover {
             background-color: rgb(254, 248, 221);
         }
-        
+
+        nav {
+            flex: 1; /* This ensures that the space is divided evenly between the two nav elements */
+        }
+    
         nav ul {
             list-style-type: none;
             padding: 0;
             display: flex;
             align-items: center;
+            margin: 0;
         }
         
-        nav ul li {
-            margin-right: 10px;
+        .left-nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start; /* Align to the most left */
         }
         
+        .right-nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end; /* Align to the most right */
+        }
+        
+        .home-button {
+            flex: 1;
+            text-align: center; /* Ensure the home button is centered */
+        }
+        
+        nav.left-nav ul li,
+        nav.right-nav ul li {
+            margin: 0 10px;
+        }
+
         .centered-text {
             font-size: 32px;
             margin-top: 100px;
         }
 
-        /* Modified link styles */
         a.custom-link {
             display: inline-block;
             padding: 10px 20px;
@@ -61,16 +110,11 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
-        
+
         a.custom-link:hover {
             background-color: rgb(254, 248, 221);
         }
 
-        .social-icon {
-            height: 30px;
-        }
-
-        /* Added styles for social icon buttons */
         .social-icon-button {
             background: none;
             border: none;
@@ -78,7 +122,10 @@
             cursor: pointer;
         }
 
-        /* Added styles for the buttons */
+        .social-icon {
+            height: 30px;
+        }
+
         .buttons-container {
             display: flex;
             flex-direction: column; /* Vertical layout */
@@ -91,56 +138,189 @@
             padding: 30px 50px; /* Increase padding for larger buttons */
             font-size: 32px; /* Increase font size for larger buttons */
             background-color: rgb(247, 216, 186);
+            border-width: 2px; /* Set the border width */
+            border-style: solid; /* Set the border style to solid */
+            border-color: rgb(0, 0, 0); /* Set the border color to black */
             border-radius: 20px;
-            border: none;
             text-decoration: none;
             color: rgb(0, 0, 0);
             font-weight: bold;
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
-
+        
         .buttons-container .button:hover {
             background-color: rgb(254, 248, 221);
+            border-color: rgb(0, 0, 0); /* Change the border color on hover */
         }
 
-        /* Added style for the header image */
-        .header-image {
-            max-width: 7%;
+        .welcome-text {
+            flex: 1;
+            background-color: rgb(254, 248, 221, 0.6);  /* Background color with 60% transparency */
+            border-radius: 30px;
+            padding: 20px;
+            text-align: left;
+            margin-button: 50px;
             height: auto;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 400px;
         }
+
+        .welcome-container {
+            flex-basis: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            padding: 50px;
+            height: 800px;  /* Set fixed height here */
+            background-image: url('{% static "Welcome.png" %}');
+            background-size: cover; /* ensures the image covers the entire element */
+            background-position: center; /* centers the image */
+            background-repeat: no-repeat; /* ensures the image does not repeat */
+        }
+
+        .services-text {
+            flex: 1;
+            background-color: rgb(254, 248, 221, 0.6);  /* Background color with 60% transparency */
+            border-radius: 30px;
+            padding: 20px;
+            text-align: left;
+            margin-button: 50px;
+            height: auto;
+            max-width: 400px;
+        }
+
+        .services-container {
+            flex-basis: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            padding: 50px;
+            height: 800px;  /* Set fixed height here */
+            background-image: url('{% static "Services_2.png" %}');
+            background-size: cover; /* ensures the image covers the entire element */
+            background-position: center; /* centers the image */
+            background-repeat: no-repeat; /* ensures the image does not repeat */
+            margin-top: 20px;
+        }
+
+        .content-container {
+            overflow-y: auto; /* Add vertical scrollbar when content overflows */
+        }
+
+        #content-container {
+            display: flex;          /* Add flex display to make its children line up in a flex row */
+            justify-content: flex-start; /* Align to the left */
+        }
+
+        .about-me-container {
+            flex-basis: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding: 0px;
+            height: 800px;  /* Set fixed height here */
+            background-image: url('{% static "About_me.png" %}');
+            background-size: cover; /* ensures the image covers the entire element */
+            background-position: center; /* centers the image */
+            background-repeat: no-repeat; /* ensures the image does not repeat */
+            margin-top: 20px;   
+        }
+
+        .centered-content {
+            margin: 0 0px; /* Adjust the margin as needed */
+        }
+
+        .about-me-text {
+            flex: 1;
+            background-color: rgba(254, 248, 221, 0.6);  /* Background color with 60% transparency */
+            border-radius: 30px;
+            padding: 20px;
+            text-align: left;
+            height: auto;
+            max-width: 600px;
+        }
+
+        .baseboard {
+            background-color: rgb(254, 248, 221);
+            padding: 15px;
+            font-size: 14px;
+        }
+
     </style>
+
+
 </head>
 <body>
     <header>
-        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
-        <img src="{% static 'Psy.png' %}" alt="Psy" class="header-image">
-        <nav>
+        <nav class="left-nav">
             <ul>
-                <!-- Left buttons -->
-                <li><a href="{% url 'blog' %}" class="custom-link">Blog</a></li>
-                <li><a href="{% url 'resources' %}" class="custom-link">Resources</a></li>
+                <li><a href="#about" class="custom-link">About me</a></li>
+                <li><a href="#services" class="custom-link">Services</a></li>
+            </ul>
+        </nav>
+        <h1 class="home-button" onclick="location.href='/';">Ana Carvalho</h1>
+        <nav class="right-nav">
+            <ul>
                 <li><a href="{% url 'contacts' %}" class="custom-link">Contacts</a></li>
-                
-                <!-- Right buttons -->
-                <li>
-                    <ul>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin.png' %}" class="social-icon"></button></li>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram.png' %}" class="social-icon"></button></li>
-                        <li><button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook.png' %}" class="social-icon"></button></li>
-                    </ul>
-                </li>
+                <li><a href="/appointment" class="button-appointment">Make an appointment</a></li>
             </ul>
         </nav>
     </header>
+     
 
-    <!-- Updated buttons -->
-    <div class="buttons-container">
-        <button class="button home-button" onclick="location.href='/about';">About me</button>
-        <button class="button home-button" onclick="location.href='/services';">Services</button>
-        <button class="button home-button" onclick="location.href='/appointment';">Make an appointment</button>
+<div class="content"> 
+    <div class="welcome-container">
+        <div class="welcome-text">
+            <h2>Welcome to My Website!</h2>
+            <p>This is a sample text. You can replace it with your own content.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et rhoncus augue. Nullam tincidunt lobortis felis, at interdum arcu aliquet vel. Sed vel sapien sit amet eros efficitur finibus. Proin finibus bibendum enim. Vestibulum in est nec velit pharetra fermentum. Nunc suscipit magna nec orci rutrum, ut dignissim nisi accumsan. Ut maximus, ipsum at tempus faucibus, enim sem efficitur erat, eget dapibus ex mauris non est.</p>
+        </div>
+</div>
+
+<a name="about"></a>
+<div id="content-container" class="centered-content">
+    <div class="about-me-container">
+        <div class="about-me-text">
+            <h2>About Me</h2>
+                <p>Hello! I'm Dr. Ana Carvalho, a licensed psychologist specializing in cognitive-behavioral therapy. With over 10 years of experience, I am dedicated to helping individuals overcome challenges and improve their mental well-being.</p>
+                <p>I believe in creating a safe and supportive environment for my clients, where they can openly discuss their concerns. My approach is collaborative, focusing on understanding each person's unique needs and tailoring treatment accordingly.</p>
+                <p>Through evidence-based techniques, I work with clients to develop coping strategies, address negative thought patterns, and promote positive behavior change. My goal is to empower individuals to lead fulfilling lives and achieve their personal growth objectives.</p>
+                <p>If you are seeking support for anxiety, depression, relationship issues, or any other psychological concerns, I am here to help. Together, we can embark on a journey of self-discovery and resilience.</p>
+                <p>Feel free to explore my website for more information about my services and resources. Don't hesitate to reach out and schedule an appointment. I look forward to working with you.</p>
+                <p>Hello! I'm Dr. Ana Carvalho, a licensed psychologist specializing in cognitive-behavioral therapy. With over 10 years of experience, I am dedicated to helping individuals overcome challenges and improve their mental well-being.</p>
+                <p>I believe in creating a safe and supportive environment for my clients, where they can openly discuss their concerns. My approach is collaborative, focusing on understanding each person's unique needs and tailoring treatment accordingly.</p>
+                <p>Through evidence-based techniques, I work with clients to develop coping strategies, address negative thought patterns, and promote positive behavior change. My goal is to empower individuals to lead fulfilling lives and achieve their personal growth objectives.</p>
+                <p>If you are seeking support for anxiety, depression, relationship issues, or any other psychological concerns, I am here to help. Together, we can embark on a journey of self-discovery and resilience.</p>
+            </div>
     </div>
+</div>
+
+<a name="services"></a>
+<div id="content-container" class="centered-content">
+    <div class="services-container">
+        <div class="services-text">
+            <h2>Service 1</h2>
+            <p>Desciption</p>
+            </p>    </p>
+            <h2>Service 2</h2>
+            <p>Desciption</p>
+            </p>    </p>
+            <h2>Service 3</h2>
+            <p>Desciption</p>
+            </p>    </p>
+        </div>
+    </div>
+</div>
+
+<div class="baseboard">
+    &copy; {% now "Y" %} Ana Carvalho. All rights reserved.
+    <div>
+        <p> <p>
+        <button class="social-icon-button" onclick="window.open('https://www.linkedin.com/', '_blank');"><img src="{% static 'linkedin_1.png' %}" class="social-icon"></button>
+        <button class="social-icon-button" onclick="window.open('https://www.instagram.com/', '_blank');"><img src="{% static 'instagram_1.png' %}" class="social-icon"></button>
+        <button class="social-icon-button" onclick="window.open('https://www.facebook.com/', '_blank');"><img src="{% static 'facebook_1.png' %}" class="social-icon"></button>
+    </div>
+</div>
+
 </body>
 </html>
